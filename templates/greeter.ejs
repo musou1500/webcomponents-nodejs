@@ -1,6 +1,10 @@
-<app-greeter default-name="<%= locals?.defaultName %>">
+<app-greeter
+  <% Object.entries(locals?.props || {}).forEach(([k, v]) => { %>
+    <%= k %>="<%= v %>"
+  <% }) %>
+>
   <template shadowrootmode="open">
     <input type="text" placeholder="Enter your name" id="input" />
-    <p id="output"></p>
+    <p id="output" part="output"></p>
   </template>
 </app-greeter>

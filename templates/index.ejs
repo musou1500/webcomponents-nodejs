@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      app-greeter.custom-class::part(output) {
+        color: blue;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <%- include("greeter") -%>
-    <%- include("greeter", { defaultName: "John" }) -%>
+    <%- include("greeter", { props: {
+      "default-name": "John Doe",
+      "class": "custom-class",
+    } }) -%>
 
     <script src="/dist/app.js"></script>
   </body>

@@ -1,19 +1,21 @@
 customElements.define(
   "app-greeter",
   class extends HTMLElement {
-    private inputEl: HTMLInputElement;
-    private outputEl: HTMLElement;
     static observedAttributes = ["default-name"];
+
+    get inputEl(): HTMLInputElement {
+      return this.shadowRoot!.getElementById("input") as HTMLInputElement;
+    }
+
+    get outputEl(): HTMLElement {
+      return this.shadowRoot!.getElementById("output") as HTMLElement;
+    }
 
     connectedCallback() {
       if (!this.shadowRoot) {
         throw new Error("shadow root is null");
       }
 
-      this.inputEl = this.shadowRoot.getElementById(
-        "input",
-      ) as HTMLInputElement;
-      this.outputEl = this.shadowRoot.getElementById("output") as HTMLElement;
       this.inputEl.addEventListener("input", this.onChangeName);
       this.updateMessage();
     }
